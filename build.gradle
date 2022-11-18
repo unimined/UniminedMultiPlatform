@@ -1,0 +1,35 @@
+plugins {
+    id 'xyz.wagyourtail.unimined' version '0.1.6-SNAPSHOT' apply false
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'xyz.wagyourtail.unimined'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.version
+    group = rootProject.group
+
+    unimined {
+        useGlobalCache = false
+    }
+
+    dependencies {
+        minecraft "net.minecraft:minecraft:${rootProject.minecraft_version}"
+
+        mappings "net.minecraft:minecraft:${rootProject.minecraft_version}:client-mappings"
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+
+        var version = 8
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.release = version
+        }
+    }
+}

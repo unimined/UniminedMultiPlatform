@@ -1,0 +1,36 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+minecraft {
+    fabric()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+}
+
+dependencies {
+    fabric "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+
+    mappings "net.fabricmc:intermediary:${rootProject.minecraft_version}:v2"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-resource-loader-v0:${project.fabric_api_resource_loader_version}"
+    include "net.fabricmc.fabric-api:fabric-resource-loader-v0:${project.fabric_api_resource_loader_version}"
+
+    common project(path: ':common'), { transitive false }
+    shadowCommon project(path: ':common'), { transitive false }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    dependsOn shadowJar
+}

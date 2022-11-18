@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "id": "examplemod",
+    "version": "${version}",
+    "name": "Example Mod",
+    "description": "This is an example mod.",
+    "authors": [
+        "Example Mod Author"
+    ],
+    "contact": {
+        "homepage": "https://example.com/"
+    },
+    "license": "CC0",
+    "icon": "assets/examplemod/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "client": [
+            "org.example.fabric.ExampleModClient"
+        ]
+    },
+    "mixins": [
+    ],
+    "depends": {
+        "fabricloader": ">=0.11.0",
+        "minecraft": "1.16.5"
+    },
+    "suggests": {
+    }
+}
