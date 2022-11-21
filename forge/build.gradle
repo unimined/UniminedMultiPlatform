@@ -4,8 +4,7 @@ plugins {
 
 minecraft {
     forge {
-    //    it.mcpVersion = '12-1.7.10'
-    //    it.mcpChannel = 'stable'
+        includeSubprojectSourceSets += project(":common").sourceSets.main
     }
     mcRemapper.fallbackTarget = "searge"
     mcRemapper.tinyRemapperConf = {
