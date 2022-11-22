@@ -18,9 +18,28 @@ subprojects {
         useGlobalCache = false
     }
 
+    minecraft {
+
+    }
+
+    repositories {
+        maven {
+            url "https://maven.minecraftforge.net/"
+            metadataSources {
+                artifact()
+            }
+        }
+        maven {
+            url "https://maven.legacyfabric.net/"
+        }
+    }
+
     dependencies {
         minecraft "net.minecraft:minecraft:${rootProject.minecraft_version}"
-        mappings "net.minecraft:minecraft:${rootProject.minecraft_version}:client-mappings"
+
+        mappings "de.oceanlabs.mcp:mcp:${rootProject.minecraft_version}:srg@zip"
+        mappings "de.oceanlabs.mcp:mcp_stable:12-1.7.10@zip"
+        mappings "net.fabricmc:intermediary:${rootProject.minecraft_version}:v2"
     }
 
     tasks.withType(JavaCompile) {

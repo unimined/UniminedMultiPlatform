@@ -2,11 +2,14 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
+unimined {
+    modProvider.modRemapper.fromMappings = "intermediary"
+}
+
 minecraft {
     forge {
         includeSubprojectSourceSets += project(":common").sourceSets.main
     }
-    mcRemapper.fallbackTarget = "searge"
     mcRemapper.tinyRemapperConf = {
         it.ignoreFieldDesc(true)
         it.ignoreConflicts(true)
@@ -35,4 +38,5 @@ shadowJar {
 remapJar {
     inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
+    fallbackFromNamespace = "intermediary"
 }

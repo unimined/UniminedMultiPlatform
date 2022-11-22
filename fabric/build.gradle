@@ -13,13 +13,17 @@ configurations {
     runtimeClasspath.extendsFrom common
 }
 
+repositories {
+    maven {
+        url "https://maven.legacyfabric.net/"
+    }
+}
+
 dependencies {
     fabric "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 
-    mappings "net.fabricmc:intermediary:${rootProject.minecraft_version}:v2"
-
-    modImplementation fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
-    include fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
+//    modImplementation fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
+//    include fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
 
     common project(path: ':common'), { transitive false }
     shadowCommon project(path: ':common'), { transitive false }
