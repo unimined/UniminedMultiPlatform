@@ -1,8 +1,8 @@
 plugins {
-    id 'xyz.wagyourtail.unimined' version '0.2.0-SNAPSHOT' apply false
-};
+    id 'xyz.wagyourtail.unimined' version '0.2.0' apply false
+}
 
-subprojects {
+allprojects {
 
     apply plugin: 'java'
     apply plugin: 'xyz.wagyourtail.unimined'
@@ -50,4 +50,8 @@ subprojects {
             options.release = version
         }
     }
+}
+
+remapJar {
+    targetNamespace = "named"
 }

@@ -26,8 +26,8 @@ configurations {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
 
-    common project(path: ':common'), { transitive false }
-    shadowCommon project(path: ':common'), { transitive false }
+    common project(path: ':'), { transitive false }
+    shadowCommon project(path: ':'), { transitive false }
 }
 
 shadowJar {

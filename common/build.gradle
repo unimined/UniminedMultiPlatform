@@ -1,8 +1,0 @@
-
-minecraft {
-
-}
-
-remapJar {
-    targetNamespace = "named"
-}
