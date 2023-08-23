@@ -38,6 +38,7 @@ sourceSets {
         runtimeClasspath += sourceSets.main.get().output
     }
 }
+
 tasks {
     jar { enabled = false }
 
@@ -69,33 +70,26 @@ dependencies{
 }
 
 unimined.useGlobalCache = false
-listOf(
-    sourceSets[mainSourceSet],
-    sourceSets[fabricSourceSet],
-    sourceSets[forgeSourceSet]
-).map {
-    unimined.minecraft(it) {
-        version(mcVersion)
-        side("client")
-        mappings {
-            intermediary()
-            yarn("1")
-        }
 
-        when (it.name) {
-            mainSourceSet -> {
-                defaultRemapJar = false
+unimined.minecraft(sourceSets[mainSourceSet], sourceSets[fabricSourceSet], sourceSets[forgeSourceSet]) {
+    version(mcVersion)
+    side("client")
+    mappings {
+        intermediary()
+        yarn("1")
+    }
+
+    when (this.sourceSet.name) {
+        mainSourceSet -> { defaultRemapJar = false }
+        fabricSourceSet -> {
+            fabric{
+                loader(fabricVersion)
             }
-            fabricSourceSet -> {
-                fabric{
-                    loader(fabricVersion)
-                }
-            }
-            forgeSourceSet -> {
-                minecraftForge {
-                    loader(forgeVersion)
-                    mixinConfig("modid.mixins.json")
-                }
+        }
+        forgeSourceSet -> {
+            minecraftForge {
+                loader(forgeVersion)
+                mixinConfig("modid.mixins.json")
             }
         }
     }
