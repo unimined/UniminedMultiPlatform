@@ -1,10 +1,9 @@
-package org.example.fabric;
+package com.example.fabric;
 
+import com.example.UniminedMultiplatformExample;
 import net.fabricmc.api.ClientModInitializer;
-import org.example.UniminedMultiplatformExample;
 
 public class ExampleModClient implements ClientModInitializer {
-
     @Override
     public void onInitializeClient() {
         System.out.println("Hello from Fabric client!");
