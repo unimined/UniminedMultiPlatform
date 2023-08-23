@@ -1,7 +1,7 @@
-package org.example.forge;
+package com.example.forge;
 
 import net.minecraftforge.fml.common.Mod;
-import org.example.UniminedMultiplatformExample;
+import com.example.UniminedMultiplatformExample;
 
 @Mod("examplemod")
 public class ExampleMod {

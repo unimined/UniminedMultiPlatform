@@ -25,22 +25,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 
 .idea
-
-common/build
-common/.gradle
-common/.idea
-common/run
-
-fabric/build
-fabric/.gradle
-fabric/.idea
-fabric/run
-
-forge/build
-forge/.gradle
-forge/.idea
-forge/run
-
+/run/
 build/
 
 

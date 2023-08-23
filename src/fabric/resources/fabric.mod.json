@@ -11,14 +11,15 @@
         "homepage": "https://example.com/"
     },
     "license": "CC0",
-    "icon": "assets/examplemod/icon.png",
+    "icon": "main/assets/unimined.png",
     "environment": "*",
     "entrypoints": {
         "client": [
-            "org.example.fabric.ExampleModClient"
+            "com.example.fabric.ExampleModClient"
         ]
     },
     "mixins": [
+        "modid.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=0.11.0",
