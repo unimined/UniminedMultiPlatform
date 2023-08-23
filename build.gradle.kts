@@ -38,27 +38,25 @@ sourceSets {
         runtimeClasspath += sourceSets.main.get().output
     }
 }
+tasks {
+    jar { enabled = false }
 
-tasks.register<Jar>("fabricJar") {
-    from(sourceSets.getByName(fabricSourceSet).output, sourceSets.main.get().output)
-    archiveClassifier.set("fabric")
-}
-
-tasks.register<Jar>("forgeJar") {
-    from(sourceSets.getByName(forgeSourceSet).output, sourceSets.main.get().output)
-    archiveClassifier.set("forge")
-}
-
-tasks.jar {
-    enabled = false
-}
-
-tasks.getByName("processFabricResources") {
-    inputs.property("version", modVersion)
-}
-
-tasks.getByName("processForgeResources") {
-    inputs.property("version", modVersion)
+    register<Jar>("fabricJar") {
+        from(sourceSets.getByName(fabricSourceSet).output, sourceSets.main.get().output)
+        archiveClassifier.set("fabric")
+    }
+    register<Jar>("forgeJar") {
+        from(sourceSets.getByName(forgeSourceSet).output, sourceSets.main.get().output)
+        archiveClassifier.set("forge")
+    }
+    named<ProcessResources>("processFabricResources"){
+        inputs.property("version", modVersion)
+        filesMatching("fabric.mod.json"){ expand(mutableMapOf("version" to modVersion)) }
+    }
+    named<ProcessResources>("processForgeResources"){
+        inputs.property("version", modVersion)
+        filesMatching("META-INF/mods.toml"){ expand(mutableMapOf("version" to modVersion)) }
+    }
 }
 
 repositories {
